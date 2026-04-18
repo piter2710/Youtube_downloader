@@ -1,13 +1,18 @@
 import typing
 import yt_dlp
+import os
+from dotenv import load_dotenv
 from yt_dlp.utils import DownloadError, ExtractorError, GeoRestrictedError, MaxDownloadsReached, PostProcessingError, UnavailableVideoError
 
+load_dotenv()
+
 def download_video(url: str, output_path: str) -> typing.Dict[str, typing.Any]:
+    ffmpeg_path = os.getenv("FFMPEG_PATH", "ffmpeg")
     ydl_opts: typing.Dict[str, typing.Any] = {
         "format":"bestaudio/best",
         "noplaylist": True,
         "restrictfilenames": True,
-        "ffmpeg_location": r"C:\ProgramData\chocolatey\bin",
+        "ffmpeg_location": ffmpeg_path,
         "outtmpl": f"{output_path}/%(title)s.%(ext)s",
         "postprocessors": [{
             "key": "FFmpegExtractAudio",
@@ -47,11 +52,10 @@ def download_video(url: str, output_path: str) -> typing.Dict[str, typing.Any]:
         raise ValueError(f"An unexpected error occurred: {e}")
     
 import whisper
-import os
 
 def transcribe_audio(file_path: str) -> typing.List[typing.Dict[str, typing.Any]]:
-    ffmpeg_path = r"C:\ProgramData\chocolatey\bin"
-    if ffmpeg_path not in os.environ["PATH"]:
+    ffmpeg_path = os.getenv("FFMPEG_PATH", "ffmpeg")
+    if ffmpeg_path not in os.environ.get("PATH", "") and ffmpeg_path != "ffmpeg":
         os.environ["PATH"] += os.pathsep + ffmpeg_path
 
     model = whisper.load_model("medium")
