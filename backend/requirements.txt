@@ -1,0 +1,10 @@
+yt-dlp[default]
+fastapi
+uvicorn[standard]
+sqlalchemy
+aiosqlite
+pydantic
+pydantic-settings
+python-dotenv
+openai-whisper
+python-multipart
