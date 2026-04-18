@@ -1,0 +1,22 @@
+# Node/npm
+node_modules/
+dist/
+build/
+npm-debug.log
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env/
+
+# Mac/OSX
+.DS_Store
+
+# IDEs and Editors
+.vscode/
+.idea/

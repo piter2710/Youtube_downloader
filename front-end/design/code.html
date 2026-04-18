@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Cinematic Curator | AI YouTube Transcriber</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary": "#acc7ff",
+                        "on-primary": "#690100",
+                        "inverse-on-surface": "#313030",
+                        "secondary-fixed": "#ffdad4",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#930100",
+                        "on-surface-variant": "#ebbbb4",
+                        "surface-bright": "#3a3939",
+                        "surface-variant": "#353534",
+                        "inverse-primary": "#c00100",
+                        "on-secondary-fixed": "#410000",
+                        "on-background": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#d7e2ff",
+                        "primary-fixed": "#ffdad4",
+                        "surface": "#131313",
+                        "surface-container": "#201f1f",
+                        "secondary": "#ffb4a8",
+                        "surface-container-low": "#1c1b1b",
+                        "background": "#131313",
+                        "on-secondary": "#690100",
+                        "on-tertiary": "#002f67",
+                        "primary-container": "#ff5540",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-container": "#00285b",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-dim": "#131313",
+                        "on-primary-container": "#5c0000",
+                        "on-tertiary-fixed": "#001a40",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-secondary-fixed-variant": "#930100",
+                        "on-secondary-container": "#ff9f90",
+                        "tertiary-container": "#488fff",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#acc7ff",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#b18780",
+                        "outline-variant": "#603e39",
+                        "surface-container-high": "#2a2a2a",
+                        "primary": "#ffb4a8",
+                        "surface-tint": "#ffb4a8",
+                        "on-primary-fixed": "#410000",
+                        "on-tertiary-fixed-variant": "#004491",
+                        "secondary-container": "#970100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0F0F0F;
+            color: #E5E2E1;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2A2A2A;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3A3939;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#131313]/70 backdrop-blur-3xl shadow-[0_20px_60px_-15px_rgba(28,27,27,0.4)]">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-none">
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold text-[#FF0000] tracking-tighter">The Cinematic Curator</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#FFB4A8] font-bold font-['Inter'] tracking-tight hover:bg-[#3A3939] transition-all duration-300 px-3 py-1 rounded-lg" href="#">Dashboard</a>
+<a class="text-[#E5E2E1] font-['Inter'] tracking-tight hover:bg-[#3A3939] transition-all duration-300 px-3 py-1 rounded-lg" href="#">My Library</a>
+<a class="text-[#E5E2E1] font-['Inter'] tracking-tight hover:bg-[#3A3939] transition-all duration-300 px-3 py-1 rounded-lg" href="#">Integrations</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#E5E2E1] hover:bg-[#3A3939] p-2 rounded-full transition-all active:scale-95">account_circle</button>
+</div>
+</nav>
+</header>
+<main class="flex-grow pt-24 pb-12 px-6 max-w-7xl mx-auto w-full">
+<!-- Hero/Input Section -->
+<section class="mb-12">
+<div class="bg-surface-container-low p-8 xl:p-12 rounded-xl shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="abstract flowing 3D mesh lines in deep red and obsidian black colors creating a sense of high-tech digital data flow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACZwG5e7zxSbtc69SE1l3hlCcCU9cFzjR7hT9R3jQw_iE6cqH3aO5RQFYOnObulQ7C9GkVssKXF7wuIxiUijegZAyj7Qh-cKyyW1uzeHafrtqN6zuJ5SUFjAhrrUdIiftyZc9MtQ4KzSqCseMutBjh7uvN36FCA-XQp0lIvibcAk-8jZLnf29d2YzEySnCdcJGa8ADAGuETkrN0-aHPFasdncL5pw1TOWNV6yJJ-gzOCZsjIvNhg0ZbeM87Hj-DHDAO8O7sqnnTTEF"/>
+</div>
+<div class="relative z-10 max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-on-surface mb-4">
+                        Instant Cinematic <span class="text-primary-container">Insights.</span>
+</h1>
+<p class="text-on-surface-variant mb-8 text-lg">Paste your YouTube link below. Whisper AI will handle the transcription while our LLMs curate the essence.</p>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-grow relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">link</span>
+<input class="w-full bg-surface-container-highest border-none focus:ring-2 focus:ring-primary-container rounded-xl pl-12 pr-4 py-4 text-on-surface placeholder:text-outline-variant transition-all" placeholder="https://www.youtube.com/watch?v=..." type="text"/>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-bold px-8 py-4 rounded-xl hover:shadow-[0_0_20px_rgba(255,85,64,0.4)] transition-all active:scale-95 whitespace-nowrap">
+                            Start Processing
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Status/Progress Display -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-3 px-2">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></div>
+<span class="text-sm font-medium tracking-wide text-on-surface">Transcribing with Whisper AI...</span>
+</div>
+<span class="text-sm text-on-surface-variant font-mono">64%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[64%] rounded-full transition-all duration-1000 ease-out"></div>
+</div>
+</section>
+<!-- Content Grid (Asymmetric Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Transcript Panel -->
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">notes</span>
+                        Raw Transcript
+                    </h3>
+<button class="text-sm text-primary hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">download</span> Export
+                    </button>
+</div>
+<div class="bg-surface-container-low rounded-xl h-[600px] overflow-hidden flex flex-col">
+<div class="p-6 overflow-y-auto custom-scrollbar flex-grow space-y-6 leading-relaxed text-on-surface/90">
+<div class="flex gap-4">
+<span class="text-xs font-mono text-primary/60 shrink-0 mt-1">00:00</span>
+<p>Welcome back to the channel. Today we're diving deep into the architecture of modern neural networks and how they've evolved over the last decade.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-xs font-mono text-primary/60 shrink-0 mt-1">00:15</span>
+<p>It's important to understand that back in 2012, when AlexNet first hit the scene, the landscape was completely different. We were looking at a few million parameters, which seemed enormous at the time.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-xs font-mono text-primary/60 shrink-0 mt-1">00:45</span>
+<p>But as we transition into the transformer era, scale became the primary driver. The shift from convolutional layers to self-attention mechanisms allowed for unprecedented parallelization in training.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-xs font-mono text-primary/60 shrink-0 mt-1">01:22</span>
+<p>This brought us to the current state of Large Language Models, where we aren't just processing pixels or tokens; we are modeling the underlying distribution of human knowledge across trillions of data points.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-xs font-mono text-primary/60 shrink-0 mt-1">02:10</span>
+<p>Now, let's look at the hardware side. NVIDIA's H100s have become the gold standard, but the efficiency of the software stack is what's truly pushing the boundaries of what's possible in real-time inference.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-xs font-mono text-primary/60 shrink-0 mt-1">02:45</span>
+<p>When we talk about Whisper AI, for example, the robust handling of accents and background noise is a direct result of this massive scale training. It's not just about the code; it's about the data diversity.</p>
+</div>
+<div class="flex gap-4 opacity-50 italic">
+<span class="text-xs font-mono text-primary/60 shrink-0 mt-1">03:15</span>
+<p>Analyzing next segment... [AI Processing]</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Summary Panel -->
+<div class="lg:col-span-5 flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-container">auto_awesome</span>
+                        AI Key Takeaways
+                    </h3>
+</div>
+<div class="bg-surface-container-high rounded-xl overflow-hidden shadow-xl border border-outline-variant/10">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="professional cinematic workspace with high-end monitors showing code and complex data visualizations in a dimly lit modern studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZmzeNNn9Q0q3M1XgCBK8BKdR4m821r5Un_AHEvCOAtv1XzjkUoz8KhWUwXcXudBwy7FQjqJsr0EuBmcmokSMF0Tbvic6_97qcy9d4cUH4a5hKZMj_DxdqRI3qhAV-Ky1vmGpbEh7EHbFD-O9NkAcfkWOsHsG-MeQrKcZ5dUr1t0ax2pmoE2jmBcdCJP71F_3LkxtsHi21NOBLAMWn7r1mjMRGrMo3XQU0lxbWXATV3GX82RBIA-IGCl0fETFhSVF4WX8lMj1sDlkz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<span class="bg-primary-container/20 text-primary-container text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wider">Video Analysis</span>
+<h4 class="text-lg font-bold mt-1">The Evolution of AI Compute</h4>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="bg-tertiary-container/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary-container text-sm">bolt</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Architectural Shift</h5>
+<p class="text-sm text-on-surface-variant">The transition from CNNs to Transformers enabled massive parallelization, changing how models learn from unstructured data.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="bg-tertiary-container/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary-container text-sm">memory</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Hardware Dominance</h5>
+<p class="text-sm text-on-surface-variant">Specialized hardware like NVIDIA H100s is crucial, but software optimization is the unsung hero of inference speed.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="bg-tertiary-container/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary-container text-sm">database</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Data Diversity</h5>
+<p class="text-sm text-on-surface-variant">Whisper AI's success is attributed to training on massive, diverse datasets covering various accents and acoustic environments.</p>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/20">
+<h5 class="text-xs font-black uppercase tracking-[0.2em] text-outline mb-4">Recommended Actions</h5>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-bright px-3 py-1.5 rounded-full text-xs font-medium hover:bg-surface-variant cursor-pointer transition-colors">Study Transformers</span>
+<span class="bg-surface-bright px-3 py-1.5 rounded-full text-xs font-medium hover:bg-surface-variant cursor-pointer transition-colors">Explore H100 Specs</span>
+<span class="bg-surface-bright px-3 py-1.5 rounded-full text-xs font-medium hover:bg-surface-variant cursor-pointer transition-colors">Whisper API docs</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0F0F0F] w-full py-8 mt-auto border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 gap-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-6">
+<span class="text-lg font-black text-[#FF0000]">The Cinematic Curator</span>
+<span class="text-[#EBBBB4] font-['Inter'] text-sm hidden md:block">© 2024 The Cinematic Curator. Powered by AI.</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-[#EBBBB4] font-['Inter'] text-sm hover:text-[#FFB4A8] transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-[#EBBBB4] font-['Inter'] text-sm hover:text-[#FFB4A8] transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-[#EBBBB4] font-['Inter'] text-sm hover:text-[#FFB4A8] transition-colors opacity-80 hover:opacity-100" href="#">API Support</a>
+</div>
+</div>
+</footer>
+</body></html>
